@@ -1,0 +1,114 @@
+.navbar {
+    display: block;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+
+    border-image: linear-gradient(90deg, var(--primary),  var(--secondary) 100%) 100;
+    border-width: 1px;
+    border-style: solid;
+
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.navbar > ul  {
+    display: flex;
+    flex-direction: row;
+    height: inherit;
+}
+
+.navbar > ul > li  {
+    display: flex;
+    padding-right: 32px;
+    padding-left: 32px;
+    align-items: center;
+    height: auto;
+}
+
+.navbar > ul > li:first-child {
+    border-color: var(--primary);
+    border-width: 1px;
+    border-style: solid;
+
+    border-top: none;
+    border-bottom: none;
+    border-left: none;  
+}
+
+.navbar > ul > li > a  {
+    text-decoration: none;
+    color: var(--on-background);
+    font-size: 18px;
+    transition: color 0.1s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.navbar > ul > li.active > a  {
+    color: var(--primary);
+}
+
+.navbar > ul > li > a:hover  {
+    color: var(--primary);
+    font-size: 18px;
+    transition: color 0.1s ease-in-out, transform 0.2s ease-in-out;
+    transform: scale(1.1);
+}
+
+.navbar > ul > li > img  {
+    width: 100px;
+}
+
+.navbar > ul > li.user-symbol  {
+    left: 0;
+    margin-left: auto;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+    .navbar 
+    {
+        width: 100%;
+        height: 40px;
+        transition: height 1s cubic-bezier(0.7, 0, 0.84, 0) 0s;
+    }
+
+    .navbar.navbar-exposed {
+        height: 100vh;
+        transition: height 1s cubic-bezier(0.04, 0.52, 0.23, 1.01) 0s;
+    }
+
+    .navbar > *
+    {
+        display: none;
+        opacity: 0;
+        transition: opacity 1s cubic-bezier(0.7, 0, 0.84, 0) 0s;
+    }
+
+    .navbar.navbar-exposed > *
+    {
+        opacity: 1;
+        transition: opacity 1s cubic-bezier(0.04, 0.52, 0.23, 1.01) 0.1s;
+    }
+
+    .navbar > ul 
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar > ul > :first-child
+    {
+        border: none;
+        display: none;
+    }
+
+    .navbar > ul > li {
+        margin: auto;
+    }
+
+}

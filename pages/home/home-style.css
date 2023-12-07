@@ -2,3 +2,9 @@
     width: 100%;
     height: 100%;
 }
+
+.home-wrapper > * 
+{
+    color: var(--on-background);
+    font-family: var(--primary-font);
+}

@@ -1,4 +1,4 @@
-import { get_all_include_tags, render_include } from "./render.js";
+import { get_all_include_tags, render_include, render } from "./render.js";
 
 function call_pager()
 {
@@ -6,7 +6,7 @@ function call_pager()
     const urlParams = new URLSearchParams(currentUrl);
     
     if(!urlParams.has("page"))
-        return;
+        urlParams.set("page", "home");
 
     const page = urlParams.get("page");
 
@@ -21,4 +21,10 @@ function call_pager()
 
 }
 
+function current_page()
+{
+    return "PAGE";
+}
+
 call_pager();
+render();

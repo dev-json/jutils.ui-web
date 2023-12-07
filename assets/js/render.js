@@ -1,4 +1,4 @@
-export { get_all_include_tags, render_include }
+export { get_all_include_tags, render_include, render };
 
 function render()
 {
@@ -12,8 +12,6 @@ function render()
     });
 }
 
-render();
-
 function get_all_include_tags() 
 {
     return document.querySelectorAll("inc");
@@ -25,7 +23,7 @@ function render_include(id) {
         return;
     const path = element.getAttribute("src");
     fetch(path)
-    .then(response => response.text())
+    .then(response => response.ok ? response.text() : "<p style='color: red;'>Error occurred while loading this page! 404?</p>")
     .then(text => {
         element.innerHTML = text;
         const scripts = element.querySelectorAll('script');

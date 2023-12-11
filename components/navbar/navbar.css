@@ -11,6 +11,8 @@
     border-top: none;
     border-right: none;
     border-left: none;
+
+    z-index: 999;
 }
 
 .navbar > ul  {

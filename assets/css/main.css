@@ -1,28 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 :root {
 
     --default-font: 'Roboto', sans-serif;
-    --secondary-font: 'Rubrik', sans-serif;
+    --secondary-font: 'Rubik', sans-serif;
 
     --primary: #BB86FC;
-    --primary-variant: #3700B3;
+    --primary-variant: #5021be;
     --secondary: #03DAC6;
-    --background: #121212;
+    --background: #141414;
     --surface: #121212;
     --error: #CF6679;
-    --on-primary: #000000;
+    --on-primary: #181818;
     --on-secondary: #000000;
-    --on-background: #FFFFFF;
+    --on-background: #feffff;
     --on-surface: #FFFFFF;
     --on-error: #000000;
-
-
 }
 
 * {
     padding: 0;
     margin: 0;
-    font-family: var(--default-font);
+    font-family: var(--secondary-font); 
 }
 
 html {

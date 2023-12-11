@@ -6,20 +6,19 @@
     <title>jutils.ui</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/main.css'>
+    <!--
     <script src="assets/js/render.js" type="module" defer></script>
     <script src="assets/js/pager.js" type="module" defer></script>
+    -->
+    <script src="assets/js/page_handler.js" type="module" defer></script>
+    <script src="assets/js/module_loader.js"  type="module" defer></script>
     <script src="https://kit.fontawesome.com/930a6605b2.js" crossorigin="anonymous"></script>
-    <base href=".">
 </head>
 <body>
     <header>
-        <inc src="components/navbar/navbar-comp.html" id="navbar-component-include"/>
+        <jinclude src="components/navbar/navbar.html" id="navbar-component-jinclude"></jinclude>
     </header>
-    <main>
-        <inc id="pager-loader-include" src="{dynamicUrl}" pageination/>
-    </main>
-    <footer>
-
-    </footer>
+    <jinclude src="components/error-bar/error-bar.html" id="error-bar-jinclude"></jinclude>
+    <jinclude src="{dynamic}" id="dynamic-page-loader" pageination></jinclude>
 </body>
 </html>

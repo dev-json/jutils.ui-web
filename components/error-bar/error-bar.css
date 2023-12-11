@@ -1,4 +1,38 @@
-.error-bar-container.hidden 
-{
-    display: none;
+.error-bar-container {
+
 }
+
+.error-bar-container > p {
+    color: tomato;
+}
+
+.message-notification 
+{
+    width: 20%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 12%;
+    background-color: var(--on-primary);
+    margin-bottom: 2%;
+    margin-right: 2%;
+    border-radius: 12px;
+    border: 2px solid var(--error);
+
+    display: flex;
+    align-items: center;
+}
+
+.message-notification > svg {
+    color: var(--error);
+    padding-left: 5%;
+    font-size: 32px;
+}
+
+.message-notification > p {
+    color: var(--error);
+    padding-left: 5%;
+    font-size: 22px;
+}
+
+

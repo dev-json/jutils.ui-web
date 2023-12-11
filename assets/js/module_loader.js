@@ -1,3 +1,4 @@
+import { display_error } from '../../components/error-bar/error-bar.js';
 import {load_page} from './page_handler.js'
 export {load_mod}
 
@@ -12,7 +13,7 @@ function load_mod(param_node)
     //Load our custom component content here and insert into our created div
     const src_path = param_node.getAttribute('src');
     fetch(src_path)
-    .then(response => response.ok ? response.text() : "<p style='color: red;'>Error while loading component: ["+response.status + " "+ response.statusText+"] </p>")
+    .then(response => response.ok ? response.text() : display_error("Unable to display page!"))
     .then(response_text => {
         container.innerHTML = response_text;
 
@@ -22,6 +23,7 @@ function load_mod(param_node)
             const script_tag = document.createElement('script');
             script_tag.src = script.src;
             script_tag.type = script.type; //was missing, so js didnt know it was marked as a module LOL (fuck u spez)
+            script_tag.defer = script.defer;
             container.appendChild(script_tag);
             container.removeChild(script);
         });

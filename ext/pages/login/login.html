@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link rel='stylesheet' type='text/css' media='screen' href="../../../assets/css/main.css">
+        <link rel='stylesheet' type='text/css' media='screen' href="login.css">
+        <script src="login.js" type="module"></script>
+        <script src="../../../assets/js/token/token_handler.js" type="module"></script>
+    </head>
+    <body>
+        <header hidden>
+            <div class="error-container" id="error-container">
+                <p>{Content}</p>
+            </div>
+        </header>
+        <div class="login-wrapper">
+            <h1>Login</h1>
+            <div class="login-form">
+                <input autocomplete="off" id="username-input" type="text" placeholder="Username">
+                <input autocomplete="off" id="password-input" type="password" placeholder="Password">
+                <input autocomplete="off" id="submit-input" type="submit" value="Login">
+            </div>
+        </div>
+    </body>
+</html>

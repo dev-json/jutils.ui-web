@@ -6,11 +6,13 @@
     --secondary-font: 'Rubik', sans-serif;
 
     --primary: #BB86FC;
+    --primary-font-variant: #b494db;
     --primary-variant: #5021be;
     --secondary: #03DAC6;
     --background: #141414;
     --surface: #121212;
-    --error: #CF6679;
+    --error: #b23a3a;
+    --success: #26cb68;
     --on-primary: #181818;
     --on-secondary: #000000;
     --on-background: #feffff;

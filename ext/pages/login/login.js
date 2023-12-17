@@ -1,85 +1,60 @@
-import { create_token } from "../../../assets/js/token/token_handler.js";
+import { get_currentTimestamp } from "../../../assets/js/api/standard/standard_api.js";
+import { post_login } from "../../../assets/js/api/auth/auth_api.js";
 
-const hostname = "127.0.0.1";
-const port = 8080;
-const context = "/api";
+document.addEventListener('DOMContentLoaded', async () => {
+    const valid = await get_currentTimestamp();
+    if (!valid)
+        console.log("Unable to connect!")
 
-async function get_currentTimestamp() {
-    fetch("http://"+hostname + ":" + port + context + "/standard" + "/currentTimestamp")
-    .then(response => response.json())
-    .then((response) => {
-        console.log(response);
-        return true;
-    })
-    .catch(response => {
-        return false;
-    });
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    get_currentTimestamp();
     const header_element = document.getElementsByTagName('header')[0];
     const error_container = document.getElementById("error-container");
     const error_text = error_container.getElementsByTagName('p')[0];
     document.getElementById('submit-input').addEventListener('click', () => {
-        const username = document.getElementById('username-input');
-        const password = document.getElementById('password-input');
-        if(username.value == "")
-        {
-            username.classList.add("invalid")
-            header_element.hidden = false;
-            error_text.innerText = 'No username entered!';
-            return;
-        }
-        else 
-        {
-            header_element.hidden = true;
-            username.classList.remove("invalid")
-        }
-
-        if(password.value == "")
-        {
-            password.classList.add("invalid")
-            header_element.hidden = false;
-            error_text.innerText = 'No password entered!';
-        }
-        else 
-        {
-            header_element.hidden = true;
-            password.classList.remove("invalid")
-        }
-
-        header_element.hidden = true;
-
-        fetch("http://"+hostname + ":" + port + context + "/auth" + "/login", {
-            method: "POST",
-            body: JSON.stringify({
-                username: username.value,
-                password: password.value
-            }),
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            }
-        })
-        .then(response => {
-            const status = response.status;
-            const content = response.json();
-            if(status == 400)
-            {
-                content.then(json => {
-                    header_element.hidden = false;
-                    error_text.innerText = json.message;
-                })
-            }
-            if(status == 200)
-            {
-                create_token("JToken", response.headers.get("JToken"));
-                window.location.href="../../../index.html";
-            }
-        })
-        .catch(() => {
-            header_element.hidden = false;
-            error_text.innerText = 'Servers are not available at the moment!';
-        });
+        console.log("loaded1")
+        _login(header_element, error_text);
     });
-})
+
+    document.getElementById('password-input').addEventListener('keydown', (event) => {
+        if (event.key == 'Enter') {
+            _login(header_element, error_text);
+        }
+    });
+});
+
+async function _login(header_element, text_element)
+{
+    const username = document.getElementById('username-input');
+    const password = document.getElementById('password-input');
+    if (username.value == "") {
+        username.classList.add("invalid")
+        header_element.hidden = false;
+        text_element.innerText = 'No username entered!';
+        return;
+    }
+    else {
+        header_element.hidden = true;
+        username.classList.remove("invalid")
+    }
+
+    if (password.value == "") {
+        password.classList.add("invalid")
+        header_element.hidden = false;
+        text_element.innerText = 'No password entered!';
+    }
+    else {
+        header_element.hidden = true;
+        password.classList.remove("invalid")
+    }
+
+    header_element.hidden = true;
+
+    const do_login = await post_login(username.value, password.value);
+    if(do_login == "Authorized")
+        window.location.href = "../../../index.html"
+    else 
+    {
+        header_element.hidden = false;
+        text_element.innerText = do_login;
+    }
+}
